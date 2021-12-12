@@ -1,14 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
-function letterA(props) {
+function LetterA(props) {
     return (
         <Image
-        resizeMode='contain'
-        style='Style.image'
-        source={require('../../assets/a.png')}
-        
-
+            resizeMode='contain'
+            style={styles.image}
+            source={require('../../assets/a.png')}
         />
     );
 }
@@ -16,9 +14,13 @@ function letterA(props) {
 const styles = StyleSheet.create({
     image: {
         position: 'absolute',
-        width:'100%',
-        height:'100%',
+        resizeMode: "contain",
+        width: '100%',
+        height: undefined,
+        aspectRatio: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
-export default letterA;
+export default LetterA;

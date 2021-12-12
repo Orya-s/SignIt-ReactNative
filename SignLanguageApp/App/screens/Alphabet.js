@@ -1,203 +1,57 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native'
+import React, { useState } from 'react';
+import { SafeAreaView, Button, Image, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, View, Text } from 'react-native';
+import LetterA from './AlphabetImages/LetterA';
+import Letter from '../components/Letter';
 
-import {Button, Image, ImageBackground, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+function Alphabet() {
 
-function Alphabet(props) {
-    const navigation = useNavigation()
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    const colors = ["#f8f8ff", "#ffffff", "#00ffff", "#7fffd4", "#ffe4c4", "#000880", "#0000ff", "#8a2be2", "#a52a2a", "#5f9ea0", "#d2691e", "#6495ed", "#00008b", "#008b8b", "#bdb76b", "#8b0000", "#483d8b", "#87ceeb", "#fa8072", "#b0e0e6", "#ffdead", "#66cdaa", "#ffd700", "#87cefa", "#ff00ff", "#b22222", "#daa520"]
+
+    let itemList = [];
+
+    for (let i = 0; i < alphabet.length; i++) {
+        itemList.push(
+            <Letter str={alphabet[i]} bcolor={"#00ffff"} />
+        )
+    }
+    const [show, setShow] = useState(false);
 
     return (
-        <ImageBackground style={styles.backGround}>
-            {/* <View >
-                <Button
-                    style={styles.backButton}
-                    title="Back to Menu"
-                    onPress={() => {
-                    navigation.replace("Home")
-                    }}
-                />
-            </View> */}
-
-            <View style={styles.Abutton}>
-                <View style={styles.font}>
-                    <Text>A</Text>
-                </View>                
-            </View>
-            <View style={styles.Bbutton}></View>
-            <View style={styles.Cbutton}></View>
-            <View style={styles.Dbutton}></View>
-            <View style={styles.Ebutton}></View>
-            <View style={styles.Fbutton}></View>
-            <View style={styles.Gbutton}></View>
-            <View style={styles.Hbutton}></View>
-            <View style={styles.Ibutton}></View>
-            <View style={styles.Jbutton}></View>
-            <View style={styles.Kbutton}></View>
-            <View style={styles.Lbutton}></View>
-            <View style={styles.Mbutton}></View>
-            <View style={styles.Nbutton}></View>
-            <View style={styles.Obutton}></View>
-            <View style={styles.Pbutton}></View>
-            <View style={styles.Qbutton}></View>
-            <View style={styles.Rbutton}></View>
-            <View style={styles.Sbutton}></View>
-            <View style={styles.Tbutton}></View>
-            <View style={styles.Ubutton}></View>
-            <View style={styles.Vbutton}></View>
-            <View style={styles.Wbutton}></View>
-            <View style={styles.Xbutton}></View>
-            <View style={styles.Ybutton}></View>
-            <View style={styles.Zbutton}></View>
-        </ImageBackground>
+        <>
+            <ImageBackground style={styles.backGround}>
+                {itemList}
+            </ImageBackground>
+        </>
     );
 }
 
+
+
 const styles = StyleSheet.create({
-    backGround:{
-        flex:1,
-        flexDirection:'row',
-        backgroundColor:"#f8f8ff",
-        justifyContent:'center',
-        alignItems:'center',
-        alignContent:'center',
-        flexWrap:'wrap',
+    backGround: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: "#f8f8ff",
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        flexWrap: 'wrap',
     },
-    font:{
-        flex:1,
-        backgroundColor:'#ffffff',
-        alignItems:'center',
-        justifyContent:'center',
+    font: {
+        position: 'absolute',
+        flex: 1,
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    Abutton:{
-        width:'25%',
+    Abutton: {
+        // position: 'absolute',
+        width: '25%',
         height: 90,
-        backgroundColor:"#00ffff",
-    },
-    Bbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#7fffd4",
-    },
-    Cbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#ffe4c4",
-    },
-    Dbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#000000",
-    },
-    Ebutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#000880",
-    },
-    Fbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#0000ff",
-    },
-    Gbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#8a2be2",
-    },
-    Hbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#a52a2a",
-    },
-    Ibutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#5f9ea0",
-    },
-    Jbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#d2691e",
-    },
-    Kbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#6495ed",
-    },
-    Lbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#00008b",
-    },
-    Mbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#008b8b",
-    },
-    Nbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#bdb76b",
-    },
-    Obutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#8b0000",
-    },
-    Pbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#483d8b",
-    },
-    Qbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#87ceeb",
-    },
-    Rbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#fa8072",
-    },
-    Sbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#b0e0e6",
-    },
-    Tbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#ffdead",
-    },
-    Ubutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#66cdaa",
-    },
-    Vbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#ffd700",
-    },
-    Wbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#87cefa",
-    },
-    Xbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#ff00ff",
-    },
-    Ybutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#b22222",
-    },
-    Zbutton:{
-        width:'25%',
-        height: 90,
-        backgroundColor:"#daa520",
-    },
+        backgroundColor: "#00ffff",
+    }
 })
+
 
 export default Alphabet;
