@@ -12,7 +12,7 @@ function Alphabet() {
 
     for (let i = 0; i < alphabet.length; i++) {
         itemList.push(
-            <Letter str={alphabet[i]} bcolor={"#00ffff"} />
+            <Letter key={i} str={alphabet[i]} bcolor={"#00ffff"} />
         )
     }
     const [show, setShow] = useState(false);
