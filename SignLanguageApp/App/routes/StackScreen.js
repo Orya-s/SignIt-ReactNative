@@ -14,9 +14,9 @@ const MyStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        {/* <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} /> */}
         <Stack.Screen name="Home" component={MainScreen} />
-        <Stack.Screen name="Alpha" component={Alphabet} />
+        <Stack.Screen name="Alpha" component={Alphabet} options={{ headerShown: false }}/>
         <Stack.Screen name="A" component={LetterA} />
 
 

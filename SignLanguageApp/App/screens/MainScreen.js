@@ -35,7 +35,7 @@ function MainScreen() {
             </View>
             <View style={styles.buttonContainer2}>
                 <TouchableOpacity
-                    //icon="camera"
+                    icon="camera"
                     //onPress={lettersLibrary}
                     >
                     <Text style={styles.buttonText}>Test yourself</Text>

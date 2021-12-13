@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, Button, Image, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, View, Text } from 'react-native';
 import LetterA from './AlphabetImages/LetterA';
 import Letter from '../components/Letter';
+import { useNavigation } from '@react-navigation/native'
 
 function Alphabet() {
 
@@ -17,12 +18,25 @@ function Alphabet() {
     }
     const [show, setShow] = useState(false);
 
+    const navigation = useNavigation()
+
+
     return (
-        <>
-            <ImageBackground style={styles.backGround}>
-                {itemList}
-            </ImageBackground>
-        </>
+        <ImageBackground style={styles.backGround}>
+            <View style={styles.backButton}>
+                <Button
+                    style={styles.textStyle}
+                    title="Back to Menu"
+                    onPress={() => {
+                    navigation.replace("Home")
+                    }}
+                    color= 'white'
+                    // padding= '100'
+                    // width= '100%'
+                />
+            </View>
+            {itemList}
+        </ImageBackground>
     );
 }
 
@@ -50,6 +64,25 @@ const styles = StyleSheet.create({
         width: '25%',
         height: 90,
         backgroundColor: "#00ffff",
+    },
+    backButton: {
+        width: '100%', 
+        height: 60, 
+        backgroundColor: '#000030', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0,
+    },
+    textStyle:{
+        width: '100%', 
+        height: 60, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        position: 'absolute',
+        fontSize:25,
+        bottom: 0,
+        padding: '100%'
     }
 })
 
