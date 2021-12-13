@@ -10,7 +10,7 @@ function Letter({ str, bcolor }) {
             // position: 'absolute',
             width: '25%',
             height: 90,
-            backgroundColor: { bcolor },
+            backgroundColor: `${bcolor}`,
         }}>
             <TouchableOpacity style={{ justifyContent: "center", alignItems: 'center' }} onPress={() => setShow(!show)}>
                 <Text>{str}</Text>
