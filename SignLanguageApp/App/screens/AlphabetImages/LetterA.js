@@ -1,12 +1,16 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+import { images } from '../AlphabetImages/images';
 
-function LetterA(props) {
+function LetterA({ str }) {
+    var source_path = images[str.toLowerCase()].uri;
+    // const data = require(`../../assets/${str}.png`);
     return (
         <Image
             resizeMode='contain'
             style={styles.image}
-            source={require('../../assets/a.png')}
+            // source={require(`../../assets/${str}.png`)}
+            source={source_path}
         />
     );
 }
