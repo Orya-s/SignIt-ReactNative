@@ -6,6 +6,7 @@ import { auth } from '../../firebase'
 const LoginScreen = () => {
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
+   const [payment, setPayment] = useState('')
 
    const navigation = useNavigation()
 
@@ -20,8 +21,9 @@ const LoginScreen = () => {
   }, [])
 
   const handleSignUp = () => {
+    payment = ''
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password, payment)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);

@@ -10,6 +10,10 @@ function MainScreen() {
         navigation.replace("Alpha")
     }
 
+    const addPayment = () => {
+        navigation.replace("AddPay")
+    }
+
     return (
         <ImageBackground
          style={styles.backGround}
@@ -27,25 +31,28 @@ function MainScreen() {
                 />
             </View>
             <Image style={styles.header} source={require('../assets/header.png')}/>
+            
             <View style={styles.buttonContainer1}>
                 <TouchableOpacity
                     onPress={lettersLibrary}>
                     <Text style={styles.buttonText}>Learn Sign Language</Text>
                 </TouchableOpacity>
             </View>
+            
             <View style={styles.buttonContainer2}>
                 <TouchableOpacity
-                    icon="camera"
+                    //icon="camera"
                     //onPress={lettersLibrary}
                     >
                     <Text style={styles.buttonText}>Test yourself</Text>
                 </TouchableOpacity>
             </View>
+            
             <View style={styles.buttonContainer3}>
                 <TouchableOpacity
-                    //onPress={lettersLibrary}
+                    onPress={addPayment}
                     >
-                    <Text style={styles.buttonText}>?</Text>
+                    <Text style={styles.buttonText}>Edit Profile</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>
