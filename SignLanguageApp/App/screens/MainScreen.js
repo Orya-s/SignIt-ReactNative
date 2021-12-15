@@ -1,10 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Platform, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View, Button} from 'react-native'
-import { auth } from '../../firebase'
+import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View, Button} from 'react-native'
+import { db, auth } from '../../firebase'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
  
 function MainScreen() {
     const navigation = useNavigation()
+    const [userData, setUserData] = useState(null);
+
 
     const lettersLibrary = () => {
         navigation.replace("Alpha")
@@ -14,11 +18,46 @@ function MainScreen() {
         navigation.replace("AddPay")
     }
 
+
+    const getUser = async() => { 
+        await db
+        .collection('users')
+        .doc(auth.currentUser.uid)
+        .get()
+        .then(documentSnapshot => {
+            if( documentSnapshot.exists ) {
+                console.log('User Data', documentSnapshot.data());
+                setUserData(documentSnapshot.data());
+            }
+            else alert("couldn't find user in db")
+            })
+        .catch(error => {
+            console.log('There has been a problem with your fetch operation: ' + error.message);
+            throw error;
+        });
+    }
+
+    const toModel = () => {
+        if (userData !== null){
+            const pay = userData.payment
+            if (pay === undefined || pay === "") {
+                Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in your profile')
+            }
+            else if (pay === '/users/1' || pay === '1'){
+                Alert.alert("", "Open Model")
+                // navigation.navigate("model")
+            }
+        }
+    }
+
+    useEffect(() => {
+        getUser();
+    }, []);
+
     return (
         <ImageBackground
          style={styles.backGround}
-         source={require('../assets/background.jpg')}
-        >
+         source={require('../assets/background.jpg')} >
             <View style={styles.backButton}>
                 <Button
                     style={styles.textStyle}
@@ -41,17 +80,15 @@ function MainScreen() {
             
             <View style={styles.buttonContainer2}>
                 <TouchableOpacity
-                    //icon="camera"
-                    //onPress={lettersLibrary}
-                    >
+                    onPress={toModel} >
+                    <Icon name='camera' color={'white'} size={12} marginTop={3}/>
                     <Text style={styles.buttonText}>Test yourself</Text>
                 </TouchableOpacity>
             </View>
             
             <View style={styles.buttonContainer3}>
                 <TouchableOpacity
-                    onPress={addPayment}
-                    >
+                    onPress={addPayment} >
                     <Text style={styles.buttonText}>Edit Profile</Text>
                 </TouchableOpacity>
             </View>
@@ -75,7 +112,6 @@ const styles = StyleSheet.create({
         width: '33%',
         justifyContent: 'center',
         alignItems: 'center',
-        //marginTop: 40,
         height: 70,
         bottom:40,
         backgroundColor:"#400060",

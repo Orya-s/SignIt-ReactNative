@@ -1,38 +1,57 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View, Button } from 'react-native'
-import LoginScreen from './LoginScreen'
-import { auth } from '../../firebase'
+import { undefined, Alert, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View, Button } from 'react-native'
+import { db, auth } from '../../firebase'
 
 
 const AddPay = () => {
 
     const navigation = useNavigation()
+    const currentUser = auth.currentUser;
+    const [pay, setPayment] = useState('')
 
     const updatePay = () => {
-        payment = LoginScreen.payment
-        auth.updateCurrentUser(LoginScreen.payment)
+        if(pay === '' || pay === undefined) {
+          alert('To become a premium user please enter a payment method')
+          Keyboard.dismiss()
+        }
+        else {
+          const e = currentUser.email 
+          db.collection('users').doc(currentUser.uid).update({
+            email: e,
+            payment:'1'
+          }) 
+          console.log("Payment added successfully");
+          Alert.alert("", "Payment added successfully")
+          navigation.replace("Home")
+        }
     }
 
 
     return(
         <ImageBackground
-            style={styles.backGround}
-            source={require('../assets/background.jpg')}
+          style={styles.backGround}
+          source={require('../assets/background.jpg')}
         >
-        <KeyboardAvoidingView
+          <KeyboardAvoidingView
             style={styles.container}
             behavior="padding">
-        <View style={styles.backButton}>
-                <Button
-                    style={styles.textStyle}
-                    title="Back to menu"
-                    onPress={() => {
-                    navigation.replace("Home")
-                    }}
-                    color='white'
-                />
-        </View>
+
+            <View> 
+              <Text style={{marginTop: -275, fontSize: 25, fontWeight: 'bold'}}>
+                Edit Your Profile
+              </Text>
+            </View>
+            <View style={styles.backButton}>
+              <Button
+                style={styles.textStyle}
+                title="Back to menu"
+                onPress={() => {
+                navigation.replace("Home")
+                }}
+                color='white'
+              />
+            </View>
 
         <View style={styles.inputContainer}>
         {/* <Text>Edit your email address: </Text>
@@ -42,14 +61,15 @@ const AddPay = () => {
           onChangeText={text => LoginScreen.arguments.setEmail(text)}
           style={[styles.input, styles.buttonOutline]}
         /> */}
-        <Text>To become premium user </Text>
-        <Text>Insert payment method: </Text>
+        <Text style={{marginTop: 1, fontSize: 20, fontWeight: 'normal', alignContent:'center'}}>To become premium user Insert payment method: </Text>
+        {/* <Text style={{marginTop: 1, fontSize: 20, fontWeight: 'bold'}}>Insert payment method: </Text> */}
         <TextInput
           placeholder="Credit Card Number"
-          value={LoginScreen.payment}
-          onChangeText={text => LoginScreen.setPayment(text)}
+          value={pay}
+          onChangeText={text => setPayment(text)}
           style={[styles.input, styles.buttonOutline]}
           secureTextEntry
+          keyboardType= 'number-pad'
         />
         </View>
 
@@ -84,7 +104,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     inputContainer: {
-      width: '100%'
+      width: '80%'
     },
     input: {
       backgroundColor: 'white',

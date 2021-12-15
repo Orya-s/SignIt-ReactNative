@@ -1,13 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
-import { auth } from '../../firebase'
+import { db, auth } from '../../firebase'
 
-const LoginScreen = () => {
+
+export const LoginScreen = () => {
+
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
-   const [payment, setPayment] = useState('')
-
+   
    const navigation = useNavigation()
 
   useEffect(() => {
@@ -21,12 +22,26 @@ const LoginScreen = () => {
   }, [])
 
   const handleSignUp = () => {
-    payment = ''
     auth
-      .createUserWithEmailAndPassword(email, password, payment)
+      .createUserWithEmailAndPassword(email, password)
       .then(userCredentials => {
-        const user = userCredentials.user;
+        user = userCredentials.user;
         console.log('Registered with:', user.email);
+
+        // Once the user creation has happened successfully, we can add the 
+        // currentUser into firestore with the appropriate details.
+        
+        db.collection('users').doc(auth.currentUser.uid)
+        .set({
+            email: email,
+            password: password,
+            //createdAt: firestore.Timestamp.fromDate(new Date()),
+            payment: ''
+        })
+        //ensure we catch any errors at this stage to know if something goes wrong
+        .catch(error => {
+            console.log('Something went wrong with added user to firestore: ', error);
+        })
       })
       .catch(error => alert(error.message))
   }
@@ -43,13 +58,13 @@ const LoginScreen = () => {
 
   return (
     <ImageBackground
-    style={styles.backGround}
-    source={require('../assets/background.jpg')}>
+      style={styles.backGround}
+      source={require('../assets/background.jpg')} >
       <Image style={styles.header} source={require('../assets/header.png')}/>
 
       <KeyboardAvoidingView
         style={styles.container}
-        behavior="padding">
+        behavior="padding" >
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -57,6 +72,7 @@ const LoginScreen = () => {
           value={email}
           onChangeText={text => setEmail(text)}
           style={[styles.input, styles.buttonOutline]}
+          keyboardType='email-address'
         />
         <TextInput
           placeholder="Password"
