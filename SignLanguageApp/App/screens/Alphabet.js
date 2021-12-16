@@ -24,16 +24,13 @@ function Alphabet() {
     return (
         <ImageBackground style={styles.backGround}>
             <View style={styles.backButton}>
-                <Button
-                    style={styles.textStyle}
-                    title="Back to Menu"
+                <TouchableOpacity
                     onPress={() => {
                     navigation.replace("Home")
                     }}
-                    color= 'white'
-                    // padding= '100'
-                    // width= '100%'
-                />
+                > 
+                <Text style={styles.backButtonText}> Back to Menu </Text>
+                </TouchableOpacity>
             </View>
             {itemList}
         </ImageBackground>
@@ -73,6 +70,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         bottom: 0,
+    },
+    backButtonText: {
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 20,
     },
     textStyle:{
         width: '100%', 

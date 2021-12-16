@@ -33,24 +33,40 @@ const AddPay = () => {
           style={styles.backGround}
           source={require('../assets/background.jpg')}
         >
-          <KeyboardAvoidingView
-            style={styles.container}
-            behavior="padding">
-
-            <View> 
-              <Text style={{marginTop: -275, fontSize: 25, fontWeight: 'bold'}}>
-                Edit Your Profile
+          <View > 
+              <Text style=
+              {[{marginTop:Platform.OS === 'android' ? 25 : 85, 
+                fontSize: 25, 
+                fontWeight: 'bold', 
+                position: 'absolute',
+                flexShrink: 1,
+                marginLeft: -200,
+                
+              }
+                , styles.textshadow]} >
+                Edit Your {'\n'}Profile
               </Text>
             </View>
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}>
+
+            {/* <View > 
+              <Text style=
+              {[{marginTop:Platform.OS === 'android' ? -190 : -250, 
+                fontSize: 25, 
+                fontWeight: 'bold', }
+                , styles.textshadow]} >
+                Edit Your Profile
+              </Text>
+            </View> */}
             <View style={styles.backButton}>
-              <Button
-                style={styles.textStyle}
-                title="Back to menu"
-                onPress={() => {
-                navigation.replace("Home")
-                }}
-                color='white'
-              />
+              <TouchableOpacity
+                    onPress={() => {
+                    navigation.replace("Home")
+                    }} > 
+                <Text style={styles.backButtonText}> Back To Menu </Text>
+              </TouchableOpacity>
             </View>
 
         <View style={styles.inputContainer}>
@@ -61,7 +77,13 @@ const AddPay = () => {
           onChangeText={text => LoginScreen.arguments.setEmail(text)}
           style={[styles.input, styles.buttonOutline]}
         /> */}
-        <Text style={{marginTop: 1, fontSize: 20, fontWeight: 'normal', alignContent:'center'}}>To become premium user Insert payment method: </Text>
+        <Text style=
+          {{marginTop: 80, 
+            fontSize: 20, 
+            fontWeight: 'normal', 
+            alignContent:'center'}} >
+              To become premium user Insert payment method: 
+        </Text>
         {/* <Text style={{marginTop: 1, fontSize: 20, fontWeight: 'bold'}}>Insert payment method: </Text> */}
         <TextInput
           placeholder="Credit Card Number"
@@ -109,7 +131,7 @@ const styles = StyleSheet.create({
     input: {
       backgroundColor: 'white',
       paddingHorizontal: 45,
-      paddingVertical: 10,
+      paddingVertical: 15,
       borderRadius: 10,
       marginTop: 5,
     },
@@ -117,7 +139,8 @@ const styles = StyleSheet.create({
       width: '60%',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 40,
+      marginTop: 10,
+      
     },
     button: {
       backgroundColor: '#0782F9',
@@ -125,12 +148,14 @@ const styles = StyleSheet.create({
       padding: 15,
       borderRadius: 10,
       alignItems: 'center',
+      marginBottom:-50
     },
     buttonOutline: {
       backgroundColor: 'white',
-      marginTop: 5,
+      marginTop: 10,
       borderColor: '#0782F9',
       borderWidth: 2,
+      //marginBottom: 10
     },
     buttonText: {
       color: 'white',
@@ -151,6 +176,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
     },
+    backButtonText: {
+      color: 'white',
+      fontWeight: '600',
+      fontSize: 20,
+    },
     textStyle:{
         width: '100%', 
         height: 60, 
@@ -159,6 +189,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         fontSize:25,
         bottom: 0,
+    },
+    textshadow:{
+      fontSize:70,
+      color:'#FFFFFF',
+      fontFamily: Platform.OS === 'android' ? 'serif' : 'Times New Roman',
+      paddingLeft:30,
+      paddingRight:30,
+      textShadowColor:'#606060',
+      textShadowOffset:{width: 5, height: 5},
+      textShadowRadius:10,
     },
   })
 

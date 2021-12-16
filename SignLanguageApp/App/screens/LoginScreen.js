@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
+import { Dimensions, Platform, ScrollView, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
 import { db, auth } from '../../firebase'
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer']);
 
 export const LoginScreen = () => {
 
@@ -57,15 +59,19 @@ export const LoginScreen = () => {
   }
 
   return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"} >
+    <ScrollView
+      keyboardShouldPersistTaps={"handled"}
+      style={{flex: 1,}}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{flexGrow: 1,}} >
     <ImageBackground
       style={styles.backGround}
       source={require('../assets/background.jpg')} >
+
       <Image style={styles.header} source={require('../assets/header.png')}/>
-
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior="padding" >
-
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -97,44 +103,56 @@ export const LoginScreen = () => {
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
       </View>
-      </KeyboardAvoidingView>
+      
     </ImageBackground>
+    </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
-
+const d = Dimensions.get("window")
 
 const styles = StyleSheet.create({
   backGround: {
-    flex:1,
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    //position: 'absolute',
+    // width: d.width,
+    // height: d.height
   },
   header:{
+    flex: 1,
+    justifyContent: 'flex-end',
     width: '90%',
     height: 100,
     position: 'absolute',
-    top:75,
+    top:65,
   },
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    // padding: 5,
+    // position: 'absolute',
+    // width: d.width,
+    // height: d.height
   },
   inputContainer: {
-    width: '100%'
+    width: '80%',
   },
   input: {
     backgroundColor: 'white',
-    paddingHorizontal: 45,
+    paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,
     marginTop: 5,
   },
   buttonContainer: {
-    width: '60%',
+    width: '35%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 15,
+    marginBottom: Platform.OS === 'android' ? 18 : 30,
   },
   button: {
     backgroundColor: '#0782F9',

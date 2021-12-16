@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View, Button} from 'react-native'
 import { db, auth } from '../../firebase'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { HeaderBackground } from 'react-navigation-stack'
 
  
 function MainScreen() {
@@ -26,7 +27,7 @@ function MainScreen() {
         .get()
         .then(documentSnapshot => {
             if( documentSnapshot.exists ) {
-                console.log('User Data', documentSnapshot.data());
+                // console.log('User Data', documentSnapshot.data());
                 setUserData(documentSnapshot.data());
             }
             else alert("couldn't find user in db")
@@ -59,15 +60,14 @@ function MainScreen() {
          style={styles.backGround}
          source={require('../assets/background.jpg')} >
             <View style={styles.backButton}>
-                <Button
-                    style={styles.textStyle}
-                    title="Sign Out"
+                <TouchableOpacity
                     onPress={() => {
                     auth.signOut()
                     navigation.replace("Login")
                     }}
-                    color='white'
-                />
+                > 
+                <Text style={styles.backButtonText}> Sign Out </Text>
+                </TouchableOpacity>
             </View>
             <Image style={styles.header} source={require('../assets/header.png')}/>
             
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 100,
         position: 'absolute',
-        top:40,
+        top:55,
     },
     buttonContainer1: {
         width: '33%',
@@ -147,6 +147,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '700',
         fontSize: 16,
+    },
+    backButtonText: {
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 23,
     },
     backButton: {
         width: '100%', 
