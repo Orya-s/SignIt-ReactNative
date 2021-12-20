@@ -45,7 +45,7 @@ function MainScreen() {
                 Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in your profile')
             }
             else if (pay === '/users/1' || pay === '1'){
-                Alert.alert("", "Open Model")
+                // Alert.alert("", "Open Model")
                 navigation.navigate("model")
             }
         }
