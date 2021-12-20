@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import Alphabet from '../screens/Alphabet';
 import LetterA from '../screens/AlphabetImages/LetterA'
 import AddPay from '../screens/AddPay';
+import Model from '../screens/Model';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,8 +21,7 @@ const MyStack = () => {
         <Stack.Screen name="Alpha" component={Alphabet} options={{ headerShown: false }}/>
         <Stack.Screen name="A" component={LetterA} options={{ headerShown: false }} />
         <Stack.Screen name="AddPay" component={AddPay} options={{ headerShown: false }} />
-
-
+        <Stack.Screen name="model" component={Model} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

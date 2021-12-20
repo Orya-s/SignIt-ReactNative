@@ -46,7 +46,7 @@ function MainScreen() {
             }
             else if (pay === '/users/1' || pay === '1'){
                 Alert.alert("", "Open Model")
-                // navigation.navigate("model")
+                navigation.navigate("model")
             }
         }
     }
