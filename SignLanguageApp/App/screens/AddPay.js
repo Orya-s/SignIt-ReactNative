@@ -6,121 +6,118 @@ import { db, auth } from '../../firebase'
 
 const AddPay = () => {
 
-    const navigation = useNavigation()
-    const currentUser = auth.currentUser;
-    const [pay, setPayment] = useState('')
+  const navigation = useNavigation()
+  const currentUser = auth.currentUser;
+  const [pay, setPayment] = useState('')
 
-    const updatePay = () => {
-        if(pay === '' || pay === undefined) {
-          alert('To become a premium user please enter a payment method')
-          Keyboard.dismiss()
-        }
-        else {
-          const e = currentUser.email 
-          db.collection('users').doc(currentUser.uid).update({
-            email: e,
-            payment:pay 
-          }) 
-          console.log("Payment added successfully");
-          Alert.alert("", "Payment added successfully")
-          navigation.replace("Home")
-        }
-    }
+  const updatePay = () => {
+      if(pay === '' || pay === undefined) {
+        alert('To become a premium user please enter a payment method')
+        Keyboard.dismiss()
+      }
+      else if(pay.length < 8 || pay.length > 19) {
+        alert('Please enter a valid credit card number')
+        Keyboard.dismiss()
+      }
+      else {
+        const e = currentUser.email 
+        db.collection('users').doc(currentUser.uid).update({
+          email: e,
+          payment:pay 
+        }) 
+        console.log("Payment added successfully");
+        Alert.alert("", "Payment added successfully")
+        navigation.replace("Home")
+      }
+  }
 
 
-    return(
-        
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior={Platform.OS === "ios" ? "padding" : "height"} >
-        <ScrollView
-          keyboardShouldPersistTaps={"handled"}
-          style={{flex: 1,}}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{flexGrow: 1,}} >
-        <ImageBackground
-          style={styles.backGround}
-          // source={require('../assets/background.jpg')}
-          backgroundColor={'#d9d9d9'} >
+  return(        
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"} >
+    <ScrollView
+      keyboardShouldPersistTaps={"handled"}
+      style={{flex: 1,}}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{flexGrow: 1,}} >
+    <ImageBackground
+      style={styles.backGround}
+      backgroundColor={'#d9d9d9'} >
 
-          <View style= 
-            {{marginTop: Platform.OS === 'android' ? 30 : 90,  
-              flex:1,
-              justifyContent: 'flex-end',
-              flexShrink: 1,
-              position: 'absolute',
-              
-            }}> 
-              <Text style=
-              {[{//marginTop: Platform.OS === 'android' ? -300 : -490, 
-                fontWeight: 'bold', 
-                height: Platform.OS === 'android' ? 650 : 820
-                //position: 'absolute',
-                //flexShrink: 1,
-                //marginLeft: -200,
-                // flex:1,
-                // justifyContent: 'flex-end',
-              }
-                , styles.textShadow]} >
-                Become a{'\n'}Premium{'\n'}User
-              </Text>
-          </View>
+      <View style= 
+        {{marginTop: Platform.OS === 'android' ? 30 : 90,  
+          flex:1,
+          justifyContent: 'flex-end',
+          flexShrink: 1,
+          position: 'absolute',
           
-          <View style={styles.backButton}>
-            <TouchableOpacity
-                  onPress={() => {
-                  navigation.replace("Home")
-                  }} > 
-              <Text style={styles.backButtonText}> Back To Menu </Text>
-            </TouchableOpacity>
-          </View>
-
-        <View style={styles.inputContainer}>
-        
-        <Text style=
-          {{fontSize: 25, 
-            alignContent:'center',
-            fontWeight: '700',
-            justifyContent: 'center',
-            alignItems: 'center',
-            //height: 100,
-            }}>
-            Want to get the complete learning experience?
-        </Text>
-        <Text style=
-          {{marginTop: 12, 
-            fontSize: 20, 
-            fontWeight: 'normal', 
-            alignContent:'center'}} >
-              {/* Want to get the complete learning experience?{'\n \n'} */}
-              Join our premium users and test your signing skills!{'\n'}
-              Once you add a payment below,{'\n'}The 'Test Yourself' option will be 
-              open for you.{'\n'}
-               
-        </Text>
-        {/* <Text style={{marginTop: 1, fontSize: 20, fontWeight: 'bold'}}>Insert payment method: </Text> */}
-        <TextInput
-          placeholder="Credit Card Number"
-          value={pay}
-          onChangeText={text => setPayment(text)}
-          style={[styles.input, styles.TextBoxOutline]}
-          secureTextEntry
-          keyboardType= 'number-pad' />
-        </View>
-
-        <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={updatePay}
-          style={styles.button}>
-
-          <Text style={styles.buttonText}>Update Payment</Text>
-        </TouchableOpacity>
-        </View>
-        </ImageBackground>
-        </ScrollView>
-        </KeyboardAvoidingView>
+        }}> 
+          <Text style=
+          {[{//marginTop: Platform.OS === 'android' ? -300 : -490, 
+            fontWeight: 'bold', 
+            height: Platform.OS === 'android' ? 650 : 820
+            //position: 'absolute',
+            //flexShrink: 1,
+            //marginLeft: -200,
+            // flex:1,
+            // justifyContent: 'flex-end',
+            }
+            ,styles.textShadow]} >
+            Become a{'\n'}Premium{'\n'}User
+          </Text>
+      </View>
       
-    )
+      <View style={styles.backButton}>
+        <TouchableOpacity
+              onPress={() => {
+              navigation.replace("Home")
+              }} > 
+          <Text style={styles.backButtonText}> Back To Menu </Text>
+        </TouchableOpacity>
+      </View>
+
+    <View style={styles.inputContainer}>
+    
+    <Text style=
+      {{fontSize: 25, 
+        alignContent:'center',
+        fontWeight: '700',
+        justifyContent: 'center',
+        alignItems: 'center',
+        }}>
+        Want to get the complete learning experience?
+    </Text>
+    <Text style=
+      {{marginTop: 12, 
+        fontSize: 20, 
+        fontWeight: 'normal', 
+        alignContent:'center'}} >
+        For only $5 a month,{'\n'}
+        Join our premium users and test your signing skills!{'\n'}
+        Once you add a payment below,{'\n'}The 'Test Yourself' option will be 
+        open for you.{'\n'}
+    </Text>
+    <TextInput
+      placeholder="Credit Card Number"
+      value={pay}
+      onChangeText={text => setPayment(text)}
+      style={[styles.input, styles.TextBoxOutline]}
+      secureTextEntry
+      keyboardType= 'number-pad' />
+    </View>
+
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity
+      onPress={updatePay}
+      style={styles.button}>
+      <Text style={styles.buttonText}>Update Payment</Text>
+    </TouchableOpacity>
+    </View>
+    </ImageBackground>
+    </ScrollView>
+    </KeyboardAvoidingView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -139,7 +136,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'stretch',
-      
     },
     inputContainer: {
       width: '80%'
@@ -154,7 +150,7 @@ const styles = StyleSheet.create({
       width: '60%',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: Platform.OS === 'android' ? 10 : 45,    //////////
+      marginTop: Platform.OS === 'android' ? 10 : 45,   
       marginBottom: 100
     },
     button: {
@@ -163,7 +159,7 @@ const styles = StyleSheet.create({
       padding: 15,
       borderRadius: 10,
       alignItems: 'center',
-      marginBottom:-20,   //////////////////,
+      marginBottom:-20,   
       marginTop: Platform.OS === 'android' ? 2 : -30, 
     },
     TextBoxOutline: {
@@ -176,8 +172,7 @@ const styles = StyleSheet.create({
     buttonText: {
       color: 'white',
       fontWeight: '700',
-      fontSize: 16,
-      
+      fontSize: 16, 
     },
     backButton: {
         width: '100%', 
@@ -187,7 +182,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         bottom: 0,
-       // marginTop: -65,
     },
     backButtonText: {
       color: 'white',
@@ -212,7 +206,6 @@ const styles = StyleSheet.create({
       textShadowColor:'#606060',
       textShadowOffset:{width: 5, height: 5},
       textShadowRadius:10,
-      
     },
   })
 

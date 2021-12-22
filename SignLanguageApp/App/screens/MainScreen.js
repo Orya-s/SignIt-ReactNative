@@ -42,7 +42,7 @@ function MainScreen() {
         if (userData !== null){
             const pay = userData.payment
             if (pay === undefined || pay === "") {
-                Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in your profile')
+                Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in the "Become Premium" page')
             }
             else {//if (pay === '/users/1' || pay === '1'){
                 // Alert.alert("", "Open Model")
@@ -82,7 +82,7 @@ function MainScreen() {
                 <TouchableOpacity
                     onPress={toModel} >
                     <Icon name='camera' color={'white'} size={12} marginTop={3}/>
-                    <Text style={styles.buttonText}>Test yourself</Text>
+                    <Text style={styles.buttonText}>Test Yourself</Text>
                 </TouchableOpacity>
             </View>
             
