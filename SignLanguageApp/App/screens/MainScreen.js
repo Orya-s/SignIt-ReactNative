@@ -44,7 +44,7 @@ function MainScreen() {
             if (pay === undefined || pay === "") {
                 Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in your profile')
             }
-            else if (pay === '/users/1' || pay === '1'){
+            else {//if (pay === '/users/1' || pay === '1'){
                 // Alert.alert("", "Open Model")
                 navigation.navigate("model")
             }
@@ -89,7 +89,7 @@ function MainScreen() {
             <View style={styles.buttonContainer3}>
                 <TouchableOpacity
                     onPress={addPayment} >
-                    <Text style={styles.buttonText}>Edit Profile</Text>
+                    <Text style={styles.buttonText}>Become Premium</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>
