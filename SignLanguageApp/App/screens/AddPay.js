@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { ScrollView, undefined, Alert, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View, Button } from 'react-native'
+import { ScrollView, undefined, Alert, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
 import { db, auth } from '../../firebase'
 
 
@@ -45,75 +45,49 @@ const AddPay = () => {
       style={styles.backGround}
       backgroundColor={'#d9d9d9'} >
 
-      <View style= 
-        {{marginTop: Platform.OS === 'android' ? 30 : 90,  
-          flex:1,
-          justifyContent: 'flex-end',
-          flexShrink: 1,
-          position: 'absolute',
-          
-        }}> 
-          <Text style=
-          {[{//marginTop: Platform.OS === 'android' ? -300 : -490, 
-            fontWeight: 'bold', 
-            height: Platform.OS === 'android' ? 650 : 820
-            //position: 'absolute',
-            //flexShrink: 1,
-            //marginLeft: -200,
-            // flex:1,
-            // justifyContent: 'flex-end',
-            }
-            ,styles.textShadow]} >
+      <View style={styles.titleView}> 
+          <Text style= {[styles.title, styles.textShadow]} >
             Become a{'\n'}Premium{'\n'}User
           </Text>
       </View>
       
       <View style={styles.backButton}>
         <TouchableOpacity
-              onPress={() => {
-              navigation.replace("Home")
-              }} > 
+            onPress={() => {
+            navigation.replace("Home")
+            }} > 
           <Text style={styles.backButtonText}> Back To Menu </Text>
         </TouchableOpacity>
       </View>
 
-    <View style={styles.inputContainer}>
-    
-    <Text style=
-      {{fontSize: 25, 
-        alignContent:'center',
-        fontWeight: '700',
-        justifyContent: 'center',
-        alignItems: 'center',
-        }}>
-        Want to get the complete learning experience?
-    </Text>
-    <Text style=
-      {{marginTop: 12, 
-        fontSize: 20, 
-        fontWeight: 'normal', 
-        alignContent:'center'}} >
-        For only $5 a month,{'\n'}
-        Join our premium users and test your signing skills!{'\n'}
-        Once you add a payment below,{'\n'}The 'Test Yourself' option will be 
-        open for you.{'\n'}
-    </Text>
-    <TextInput
-      placeholder="Credit Card Number"
-      value={pay}
-      onChangeText={text => setPayment(text)}
-      style={[styles.input, styles.TextBoxOutline]}
-      secureTextEntry
-      keyboardType= 'number-pad' />
-    </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.secondTitle}>
+          Want to get the complete learning experience?
+        </Text>
 
-    <View style={styles.buttonContainer}>
-    <TouchableOpacity
-      onPress={updatePay}
-      style={styles.button}>
-      <Text style={styles.buttonText}>Update Payment</Text>
-    </TouchableOpacity>
-    </View>
+        <Text style={styles.mainText} >
+          For only $5 a month,{'\n'}
+          Join our premium users and test your signing skills!{'\n'}
+          Once you add a payment below,{'\n'}The 'Test Yourself' option will be 
+          open for you.{'\n'}
+        </Text>
+
+        <TextInput
+          placeholder="Credit Card Number"
+          value={pay}
+          onChangeText={text => setPayment(text)}
+          style={[styles.input, styles.TextBoxOutline]}
+          secureTextEntry
+          keyboardType= 'number-pad' />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={updatePay}
+          style={styles.button} >
+          <Text style={styles.buttonText}>Update Payment</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
     </ScrollView>
     </KeyboardAvoidingView>
@@ -126,11 +100,26 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
       alignItems: 'center',
     },
-    header:{
-      width: '90%',
-      height: 100,
+    titleView:{
+      marginTop: Platform.OS === 'android' ? 30 : 90,  
+      flex:1,
+      justifyContent: 'flex-end',
+      flexShrink: 1,
       position: 'absolute',
-      top:75,
+    },
+    title:{
+      fontWeight: 'bold', 
+      height: Platform.OS === 'android' ? 650 : 820
+    },
+    textShadow:{
+      fontSize: Platform.OS === 'android' ? 50 : 65,
+      color:'#FFFFFF',
+      fontFamily: Platform.OS === 'android' ? 'serif' : 'Times New Roman',
+      paddingLeft:20,
+      paddingRight:20,
+      textShadowColor:'#606060',
+      textShadowOffset:{width: 5, height: 5},
+      textShadowRadius:10,
     },
     container: {
       flex: 1,
@@ -139,6 +128,19 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
       width: '80%'
+    },
+    secondTitle: {
+      fontSize: 25, 
+      alignContent:'center',
+      fontWeight: '700',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    mainText: {
+      marginTop: 12, 
+      fontSize: 20, 
+      fontWeight: 'normal', 
+      alignContent:'center'
     },
     input: {
       backgroundColor: 'white',
@@ -167,7 +169,6 @@ const styles = StyleSheet.create({
       marginTop: 5,
       borderColor: '#0782F9',
       borderWidth: 2,
-      //marginBottom: 10
     },
     buttonText: {
       color: 'white',
@@ -197,16 +198,7 @@ const styles = StyleSheet.create({
         fontSize:25,
         bottom: 0,
     },
-    textShadow:{
-      fontSize: Platform.OS === 'android' ? 50 : 65,
-      color:'#FFFFFF',
-      fontFamily: Platform.OS === 'android' ? 'serif' : 'Times New Roman',
-      paddingLeft:20,
-      paddingRight:20,
-      textShadowColor:'#606060',
-      textShadowOffset:{width: 5, height: 5},
-      textShadowRadius:10,
-    },
+    
   })
 
 export default AddPay;

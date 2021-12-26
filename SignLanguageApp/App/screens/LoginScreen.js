@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Dimensions, Platform, ScrollView, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
+import { Platform, ScrollView, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, View } from 'react-native'
 import { db, auth } from '../../firebase'
 
 import { LogBox } from 'react-native';
@@ -37,10 +37,8 @@ export const LoginScreen = () => {
         .set({
             email: email,
             password: password,
-            //createdAt: firestore.Timestamp.fromDate(new Date()),
             payment: ''
         })
-        //ensure we catch any errors at this stage to know if something goes wrong
         .catch(error => {
             console.log('Something went wrong with added user to firestore: ', error);
         })
@@ -109,16 +107,12 @@ export const LoginScreen = () => {
     </KeyboardAvoidingView>
   )
 }
-const d = Dimensions.get("window")
 
 const styles = StyleSheet.create({
   backGround: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    //position: 'absolute',
-    // width: d.width,
-    // height: d.height
   },
   header:{
     flex: 1,
@@ -132,10 +126,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
-    // padding: 5,
-    // position: 'absolute',
-    // width: d.width,
-    // height: d.height
   },
   inputContainer: {
     width: '80%',

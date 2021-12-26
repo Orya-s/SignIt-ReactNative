@@ -23,5 +23,3 @@ const db = app.firestore();
 const auth = firebase.auth();
 
 export { db, auth };
-
-//const analytics = getAnalytics(app);

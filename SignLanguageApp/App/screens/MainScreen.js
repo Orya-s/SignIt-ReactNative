@@ -1,9 +1,8 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View, Button} from 'react-native'
+import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View} from 'react-native'
 import { db, auth } from '../../firebase'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { HeaderBackground } from 'react-navigation-stack'
 
  
 function MainScreen() {
@@ -27,7 +26,6 @@ function MainScreen() {
         .get()
         .then(documentSnapshot => {
             if( documentSnapshot.exists ) {
-                // console.log('User Data', documentSnapshot.data());
                 setUserData(documentSnapshot.data());
             }
             else alert("couldn't find user in db")
@@ -44,8 +42,7 @@ function MainScreen() {
             if (pay === undefined || pay === "") {
                 Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in the "Become Premium" page')
             }
-            else {//if (pay === '/users/1' || pay === '1'){
-                // Alert.alert("", "Open Model")
+            else {
                 navigation.navigate("model")
             }
         }
