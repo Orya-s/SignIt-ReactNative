@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View} from 'react-native'
+import { undefined, Alert, Image, StyleSheet, Text, TouchableOpacity, ImageBackground, View } from 'react-native'
 import { db, auth } from '../../firebase'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
- 
 function MainScreen() {
+
+
     const navigation = useNavigation()
     const [userData, setUserData] = useState(null);
 
@@ -19,28 +20,28 @@ function MainScreen() {
     }
 
 
-    const getUser = async() => { 
+    const getUser = async () => {
         await db
-        .collection('users')
-        .doc(auth.currentUser.uid)
-        .get()
-        .then(documentSnapshot => {
-            if( documentSnapshot.exists ) {
-                setUserData(documentSnapshot.data());
-            }
-            else alert("couldn't find user in db")
+            .collection('users')
+            .doc(auth.currentUser.uid)
+            .get()
+            .then(documentSnapshot => {
+                if (documentSnapshot.exists) {
+                    setUserData(documentSnapshot.data());
+                }
+                else alert("couldn't find user in db")
             })
-        .catch(error => {
-            console.log('There has been a problem with your fetch operation: ' + error.message);
-            throw error;
-        });
+            .catch(error => {
+                console.log('There has been a problem with your fetch operation: ' + error.message);
+                throw error;
+            });
     }
 
     const toModel = () => {
-        if (userData !== null){
+        if (userData !== null) {
             const pay = userData.payment
             if (pay === undefined || pay === "") {
-                Alert.alert('This option is saved for premium users','To become a premium user enter a payment method in the "Become Premium" page')
+                Alert.alert('This option is saved for premium users', 'To become a premium user enter a payment method in the "Become Premium" page')
             }
             else {
                 navigation.navigate("model")
@@ -54,35 +55,35 @@ function MainScreen() {
 
     return (
         <ImageBackground
-         style={styles.backGround}
-         source={require('../assets/background.jpg')} >
+            style={styles.backGround}
+            source={require('../assets/background.jpg')} >
             <View style={styles.backButton}>
                 <TouchableOpacity
                     onPress={() => {
-                    auth.signOut()
-                    navigation.replace("Login")
+                        auth.signOut()
+                        navigation.replace("Login")
                     }}
-                > 
-                <Text style={styles.backButtonText}> Sign Out </Text>
+                >
+                    <Text style={styles.backButtonText}> Sign Out </Text>
                 </TouchableOpacity>
             </View>
-            <Image style={styles.header} source={require('../assets/header.png')}/>
-            
+            <Image style={styles.header} source={require('../assets/header.png')} />
+
             <View style={styles.buttonContainer1}>
                 <TouchableOpacity
                     onPress={lettersLibrary}>
                     <Text style={styles.buttonText}>Learn Sign Language</Text>
                 </TouchableOpacity>
             </View>
-            
+
             <View style={styles.buttonContainer2}>
                 <TouchableOpacity
                     onPress={toModel} >
-                    <Icon name='camera' color={'white'} size={12} marginTop={3}/>
+                    <Icon name='camera' color={'white'} size={12} marginTop={3} />
                     <Text style={styles.buttonText}>Test Yourself</Text>
                 </TouchableOpacity>
             </View>
-            
+
             <View style={styles.buttonContainer3}>
                 <TouchableOpacity
                     onPress={addPayment} >
@@ -95,23 +96,23 @@ function MainScreen() {
 
 const styles = StyleSheet.create({
     backGround: {
-        flex:1,
+        flex: 1,
         alignItems: 'center',
         flexDirection: 'row',
     },
-    header:{
+    header: {
         width: '100%',
         height: 100,
         position: 'absolute',
-        top:55,
+        top: 55,
     },
     buttonContainer1: {
         width: '33%',
         justifyContent: 'center',
         alignItems: 'center',
         height: 70,
-        bottom:40,
-        backgroundColor:"#400060",
+        bottom: 40,
+        backgroundColor: "#400060",
         fontWeight: 'bold',
         padding: 5,
         borderRadius: 10
@@ -122,8 +123,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 40,
         height: 70,
-        bottom:40,
-        backgroundColor:"#004080",
+        bottom: 40,
+        backgroundColor: "#004080",
         fontWeight: 'bold',
         padding: 5,
         borderRadius: 10
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 80,
         height: 70,
-        bottom:40,
-        backgroundColor:"#000070",
+        bottom: 40,
+        backgroundColor: "#000070",
         fontWeight: 'bold',
         padding: 5,
         borderRadius: 10
@@ -151,21 +152,21 @@ const styles = StyleSheet.create({
         fontSize: 23,
     },
     backButton: {
-        width: '100%', 
-        height: 60, 
-        backgroundColor: '#FF0030', 
-        justifyContent: 'center', 
+        width: '100%',
+        height: 60,
+        backgroundColor: '#FF0030',
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         bottom: 0,
     },
-    textStyle:{
-        width: '100%', 
-        height: 60, 
-        justifyContent: 'center', 
+    textStyle: {
+        width: '100%',
+        height: 60,
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        fontSize:25,
+        fontSize: 25,
         bottom: 0,
     },
 })

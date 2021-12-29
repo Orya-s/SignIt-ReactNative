@@ -26,10 +26,10 @@ function Alphabet() {
             <View style={styles.backButton}>
                 <TouchableOpacity
                     onPress={() => {
-                    navigation.replace("Home")
+                        navigation.replace("Home")
                     }}
-                > 
-                <Text style={styles.backButtonText}> Back to Menu </Text>
+                >
+                    <Text style={styles.backButtonText}> Back to Menu </Text>
                 </TouchableOpacity>
             </View>
             {itemList}
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#00ffff",
     },
     backButton: {
-        width: '100%', 
-        height: 60, 
-        backgroundColor: '#000030', 
-        justifyContent: 'center', 
+        width: '100%',
+        height: 60,
+        backgroundColor: '#000030',
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         bottom: 0,
@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
     },
-    textStyle:{
-        width: '100%', 
-        height: 60, 
-        justifyContent: 'center', 
+    textStyle: {
+        width: '100%',
+        height: 60,
+        justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        fontSize:25,
+        fontSize: 25,
         bottom: 0,
         padding: '100%'
     }
