@@ -3,12 +3,9 @@ import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview'
 import { useNavigation } from '@react-navigation/native'
 
-
-
 const Model = () => {
 
   const navigation = useNavigation()
-
 
   return (
     <>

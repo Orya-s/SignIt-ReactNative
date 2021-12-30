@@ -66,8 +66,8 @@ export function AppDrawerNav() {
         {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
         {/* {/* <Drawer.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} /> */}
         {/* <Drawer.Screen name="Home" component={MainScreen} options={{ headerShown: false }} /> */}
-        <Drawer.Screen name="Alpha" component={Alphabet} options={{ headerShown: false }} />
-        <Drawer.Screen name="AddPay" component={AddPay} options={{ headerShown: false }} />
+        <Drawer.Screen name="Learn the Alphabet" component={Alphabet} options={{ headerShown: false }} />
+        <Drawer.Screen name="Become Premium" component={AddPay} options={{ headerShown: false }} />
         {/* <Drawer.Screen name="model" component={Model} options={{ headerShown: false }} /> */}
       </Drawer.Navigator>
     </NavigationContainer>
