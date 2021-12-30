@@ -5,14 +5,17 @@ import LetterA from '../screens/AlphabetImages/LetterA'
 function Letter({ str, bcolor }) {
     const [show, setShow] = useState(false);
     return (
-
         <View style={{
             width: '25%',
             height: 90,
             backgroundColor: `${bcolor}`,
         }}>
-            <TouchableOpacity style={{ justifyContent: "center", alignItems: 'center' }} onPress={() => setShow(!show)}>
+            <TouchableOpacity
+                style={{ justifyContent: "center", alignItems: 'center' }}
+                onPress={() => setShow(!show)}>
+
                 <Text>{str}</Text>
+
             </TouchableOpacity>
             {
                 show ? (

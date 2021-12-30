@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Button, Image, ImageBackground, StyleSheet, TouchableOpacity, TouchableHighlight, View, Text } from 'react-native';
-import LetterA from './AlphabetImages/LetterA';
+import { ImageBackground, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import Letter from '../components/Letter';
 import { useNavigation } from '@react-navigation/native'
 
@@ -16,10 +15,8 @@ function Alphabet() {
             <Letter key={i} str={alphabet[i]} bcolor={colors[i]} />
         )
     }
-    const [show, setShow] = useState(false);
 
     const navigation = useNavigation()
-
 
     return (
         <ImageBackground style={styles.backGround}>
