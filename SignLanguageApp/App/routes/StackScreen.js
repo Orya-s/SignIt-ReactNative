@@ -20,25 +20,6 @@ const Stack = createNativeStackNavigator();
 
 const Drawer = createDrawerNavigator();
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    </View>
-  );
-}
-
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
-
 const MyStack = () => {
   return (
     <Stack.Navigator >
@@ -62,13 +43,8 @@ export function AppDrawerNav() {
           component={MyStack}
           options={{ headerShown: false }}
         />
-        {/* <Drawer.Screen name="Home1" component={HomeScreen} /> */}
-        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
-        {/* {/* <Drawer.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} /> */}
-        {/* <Drawer.Screen name="Home" component={MainScreen} options={{ headerShown: false }} /> */}
         <Drawer.Screen name="Learn the Alphabet" component={Alphabet} options={{ headerShown: false }} />
         <Drawer.Screen name="Become Premium" component={AddPay} options={{ headerShown: false }} />
-        {/* <Drawer.Screen name="model" component={Model} options={{ headerShown: false }} /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   )
