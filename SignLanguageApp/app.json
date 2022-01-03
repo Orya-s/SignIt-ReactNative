@@ -3,7 +3,7 @@
     "name": "sign_language",
     "slug": "sign_language",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./App/assets/icon.png",
     "splash": {
       "image": "./App/assets/splash.png",
