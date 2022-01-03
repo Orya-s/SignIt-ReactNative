@@ -20,6 +20,10 @@ Login Page             |  Home Page          |  Self Taught Page
 
 To run the application use `npm start`
 
+## 👏 How to Contribute
+
+The main purpose of this repository is to continue evolving Sign-Language datasets and better models. Feel free to insert your own model instead, you can find it in the page model.js
+
 
 ## CONTRIBUTORS ✨
 
