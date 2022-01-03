@@ -1,8 +1,8 @@
-# Sign Language App project
-## React Native Project using Android Studio, Firebase
+# Sign-It
+## React Native Project using Android Studio, Firebase & Expo
 American Sign Langauge model using Tensorflow RealTimeObjectDetection &amp; OpenCV library
 
-We've built a simple application that demonstrates the use of a tensorflow Real-Time-Object-Detection model that can identify sign language letters.
+The app also supports user registration with firebase API, camera us via object-detection model.
 
 
 ## Screens:
@@ -19,6 +19,10 @@ Login Page             |  Home Page          |  Self Taught Page
 ## Running
 
 To run the application use `npm start`
+
+## 👏 How to Contribute
+
+The main purpose of this repository is to continue evolving Sign-Language datasets and better models. Feel free to insert your own model instead, you can find it in the page model.js
 
 
 ## CONTRIBUTORS ✨
