@@ -20,10 +20,14 @@ Login Page             |  Home Page          |  Self Taught Page
 
 To run the application use `npm start`
 
+## Real-Time-Object-Detetction Model
+
+The model which we trained and created can be found here:<br>
+https://github.com/matannagar/model
+
 ## 👏 How to Contribute
 
 The main purpose of this repository is to continue evolving Sign-Language datasets and better models. Feel free to insert your own model instead, you can find it in the page model.js
-
 
 ## CONTRIBUTORS ✨
 
