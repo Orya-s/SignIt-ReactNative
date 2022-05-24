@@ -8,7 +8,7 @@ The app also supports user registration with firebase API, and camera use for th
 ## Screens:
 Login Page             |  Home Page          |  Self Taught Page          
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://i.ibb.co/QHJNvHH/Whats-App-Image-2021-12-12-at-18-12-56.jpg"  width="200" height="400" />  |  <img src="https://i.ibb.co/c87xWXR/Whats-App-Image-2021-12-12-at-18-12-54.jpg"  width="200" height="400" />  |  <img src="https://i.ibb.co/KKh4JvM/Whats-App-Video-2021-12-13-at-08-32-34.gif"  width="200" height="400" />
+<img src="https://i.ibb.co/QHJNvHH/Whats-App-Image-2021-12-12-at-18-12-56.jpg"  width="200" height="400" />  |  <img src="Documents/app_menu.JPG"  width="200" height="400" />  |  <img src="https://i.ibb.co/KKh4JvM/Whats-App-Video-2021-12-13-at-08-32-34.gif"  width="200" height="400" />
 
 ## Build instructions
 1. Open the project directory
