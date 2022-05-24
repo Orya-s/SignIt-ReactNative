@@ -2,7 +2,7 @@
 ## React Native Project using Android Studio, Firebase & Expo
 American Sign Langauge model using Tensorflow RealTimeObjectDetection &amp; OpenCV library
 
-The app also supports user registration with firebase API, camera us via object-detection model.
+The app also supports user registration with firebase API, and camera use for the object-detection model.
 
 
 ## Screens:
